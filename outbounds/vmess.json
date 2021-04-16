@@ -1,0 +1,30 @@
+[
+  {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "$DOMAIN",
+          "port": 443,
+          "users": [
+            {
+              "id": "$UUID",
+              "level": 0
+            }
+          ]
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "wsSettings": {
+        "path": "/$REQ_PATH/"
+      },
+      "security": "tls"
+    }
+  },
+  {
+    "protocol": "freedom",
+    "tag": "direct"
+  }
+]

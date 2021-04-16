@@ -1,0 +1,58 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 1080,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "timeout": 300,
+        "udp": true
+      }
+    },
+    {
+      "protocol": "http",
+      "port": 8087
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": 1081,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "timeout": 300,
+        "udp": true
+      },
+      "tag": "in-d1"
+    },
+    {
+      "protocol": "http",
+      "port": 8088,
+      "tag": "in-d2"
+    }
+  ],
+  "outbounds": [],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": [
+          "in-d1",
+          "in-d2"
+        ],
+        "outboundTag": "direct"
+      }
+    ]
+  },
+  "dns": {
+    "servers": [
+      "8.8.8.8",
+      "8.8.4.4",
+      "localhost"
+    ]
+  }
+}
